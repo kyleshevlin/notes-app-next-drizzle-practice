@@ -15,7 +15,7 @@ export default async function NoteLayout({
       <div className="min-w-[200px] border-r border-r-slate-300 bg-white">
         <div>
           <Link href="/notes/create">
-            <div className="bg-gradient-to-b from-blue-500 to-blue-600 p-4 text-center text-white">
+            <div className="bg-gradient-to-b from-blue-500 to-blue-600 p-4 text-center text-white hover:to-blue-700">
               + Create note
             </div>
           </Link>
@@ -26,7 +26,7 @@ export default async function NoteLayout({
             notes.map(note => {
               return (
                 <Link key={note.id} href={`/notes/${note.id}`}>
-                  <div className="border-b border-b-slate-300 px-8 py-4">
+                  <div className="border-b border-b-slate-300 bg-white px-8 py-4 transition-colors hover:bg-gray-100">
                     <div className="font-bold">{note.title}</div>
                     <div className="text-gray-500">
                       {maybeEllipsize(note.content, 20)}

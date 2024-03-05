@@ -42,12 +42,21 @@ export function Button({
   status = 'default',
   type = 'button',
 }: Props) {
+  const isDisabled = status !== 'default'
   const Wrap = getWrap(intent, status)
 
-  const isDisabled = status !== 'default'
+  const handleClick = () => {
+    if (isDisabled) return
+    onClick?.()
+  }
 
   return (
-    <button aria-disabled={isDisabled} onClick={onClick} type={type}>
+    <button
+      className={isDisabled ? 'cursor-not-allowed' : 'cursor-pointer'}
+      aria-disabled={isDisabled}
+      onClick={handleClick}
+      type={type}
+    >
       <Wrap>
         <div className="relative">
           {/**
@@ -76,7 +85,7 @@ function Pending() {
 
 function WrapDefault({ children }: { children: React.ReactNode }) {
   return (
-    <div className="rounded-md bg-gradient-to-b from-blue-500 to-blue-600 px-6 py-2 text-white">
+    <div className="rounded-md bg-gradient-to-b from-blue-500 to-blue-600 px-6 py-2 text-white hover:to-blue-700">
       {children}
     </div>
   )
@@ -84,7 +93,7 @@ function WrapDefault({ children }: { children: React.ReactNode }) {
 
 function WrapDanger({ children }: { children: React.ReactNode }) {
   return (
-    <div className="rounded-md bg-gradient-to-b from-rose-500 to-rose-600 px-6 py-2 text-white">
+    <div className="rounded-md bg-gradient-to-b from-rose-500 to-rose-600 px-6 py-2 text-white hover:to-rose-700">
       {children}
     </div>
   )
